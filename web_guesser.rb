@@ -11,7 +11,7 @@ def check_guess(guess)
     elsif SECRET_NUM - guess > 5
     	"Way Too Low"
     elsif SECRET_NUM == guess
-      	"You guessed right! The number was #{SECRET_NUM}! Try again!"
+      	"You guessed right! The Secret Number was #{SECRET_NUM}. Try again!"
     elsif SECRET_NUM > guess
       	"Too Low"
     elsif SECRET_NUM < guess
@@ -32,6 +32,7 @@ def get_bcolor(message)
 end
 
 get '/' do
+	cheat = params["cheat"]
 	if params["guess"] == nil
 		message = "Guess a number between 1 and 100."
 	else
@@ -51,5 +52,5 @@ get '/' do
 	end
 	bcolor = get_bcolor(message)
 	erb :index, :locals => {:secret_num => SECRET_NUM, :message => message,
-		:bcolor => bcolor}
+		:bcolor => bcolor, :cheat => cheat}
 end
